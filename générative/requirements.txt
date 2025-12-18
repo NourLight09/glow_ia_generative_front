@@ -1,0 +1,3 @@
+langchain
+langchain-mistralai
+python-dotenv==1.0.0
