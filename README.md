@@ -1,63 +1,154 @@
-# Glow AI - Consultant Beauté Intelligent ✨
+# Glow AI – Consultant Beauté Intelligent ✨
 
-Glow AI est une application de recommandation de routines de soins de la peau alimentée par l'Intelligence Artificielle (Mistral AI) et enrichie par une base de données produits (RAG).
+Glow AI est une application de recommandation de routines de soins de la peau basée sur deux approches complémentaires d’Intelligence Artificielle :
 
-## 📂 Structure du Projet
+* **IA générative** : génération de routines personnalisées à l’aide de Mistral AI et d’un système RAG (produits réels).
+* **IA prédictive** : prédiction et analyse via des modèles de machine learning classiques.
 
-Le projet est divisé en deux dossiers principaux :
+Les deux parties sont indépendantes mais partagent une interface commune basée sur Streamlit.
 
-*   **`Glow_front/`** : Contient l'interface utilisateur (Frontend) réalisée avec Streamlit.
-*   **`générative/`** : Contient la logique IA (Backend), le moteur RAG et la base de données produits (`skincare_products.csv`).
+---
 
-## 🛠️ Prérequis
+## Structure du Projet
 
-*   **Python 3.8** ou supérieur.
-*   Une clé API **Mistral AI**.
+Le projet est organisé en **quatre dossiers principaux**, séparant clairement les deux types d’IA :
 
-## 🚀 Installation
+### IA Générative
 
-1.  **Ouvrez un terminal** dans le dossier racine du projet (`Ia_predictive`).
+* **`Glow_front_IA_generative/`**
+  Interface utilisateur (Frontend) réalisée avec Streamlit.
 
-2.  **Installez les dépendances** nécessaires pour le frontend et le backend. Exécutez la commande suivante :
+* **`generative/`**
+  Backend de l’IA générative :
 
-    ```bash
-    pip install streamlit langchain langchain-mistralai langchain-community faiss-cpu pandas python-dotenv pydantic sentence-transformers
-    ```
+  * moteur RAG
+  * logique IA
+  * base de données produits (`skincare_products.csv`)
 
-3.  **Configuration de la clé API** :
-    *   Assurez-vous d'avoir un fichier `.env` dans le dossier `Glow_front`.
-    *   Ce fichier doit contenir votre clé API sous la forme suivante :
-        ```env
-        MISTRAL_API_KEY=votre_clé_api_ici
-        ```
+### 📊 IA Prédictive
 
-## ▶️ Lancement de l'Application
+* **`Glow_front_IA_predictive/`**
+  Interface utilisateur (Frontend) réalisée avec Streamlit.
 
-L'application fonctionne comme un tout unique. Vous n'avez besoin de lancer que l'interface Streamlit, qui chargera automatiquement le module IA. **Il n'y a pas de serveur backend séparé à lancer.**
+* **`IA_predictive/`**
+  Backend de l’IA prédictive (modèles de machine learning, prédictions, traitements).
 
-1.  Placez-vous dans le dossier du frontend :
-    ```bash
-    cd Glow_front
-    ```
+---
 
-2.  Lancez l'application :
-    ```bash
-    python -m streamlit run app.py
-    ```
+##  Prérequis
 
-3.  L'application s'ouvrira automatiquement dans votre navigateur (généralement à l'adresse `http://localhost:8501`).
+* **Python 3.8 ou supérieur**
+* **Une clé API Mistral AI** (uniquement pour l’IA générative)
+
+---
+
+## Installation
+
+###  Installation – IA Générative
+
+1. Ouvrez un terminal à la racine du projet.
+
+2. Installez les dépendances :
+
+```bash
+pip install streamlit langchain langchain-mistralai langchain-community faiss-cpu pandas python-dotenv pydantic sentence-transformers
+```
+
+3. Configuration de la clé API :
+
+* Créez un fichier `.env` dans le dossier `Glow_front_IA_generative`
+* Ajoutez :
+
+```env
+MISTRAL_API_KEY=votre_cle_api_ici
+```
+
+---
+
+### Installation – IA Prédictive (Linux)
+
+Sur Linux, il est obligatoire de créer un environnement virtuel Python.
+
+1. Placez-vous dans le dossier :
+
+```bash
+cd Glow_front_IA_predictive
+```
+
+2. Créez l’environnement virtuel :
+
+```bash
+python3 -m venv venv
+```
+
+3. Activez-le :
+
+```bash
+source venv/bin/activate
+```
+
+4. Installez les dépendances :
+
+```bash
+pip install streamlit xgboost pandas joblib scikit-learn
+```
+
+---
+
+## Lancement des Applications
+
+### Lancer l’IA Générative
+
+```bash
+cd Glow_front_IA_generative
+streamlit run app.py
+```
+
+Application accessible sur :
+
+```
+http://localhost:8501
+```
+
+---
+
+### Lancer l’IA Prédictive
+
+```bash
+source venv/bin/activate
+cd Glow_front_IA_predictive
+streamlit run app.py
+```
+
+---
 
 ## 🧩 Fonctionnement Technique
 
-*   **Interface** : L'utilisateur remplit son profil (âge, type de peau, budget, etc.) via `views.py`.
-*   **Backend** :
-    *   `glow.py` initialise l'agent IA.
-    *   `product_retriever.py` indexe les produits du fichier CSV (`skincare_products.csv`) au démarrage pour permettre à l'IA de recommander des produits réels (RAG).
-    *   Mistral AI génère une routine complète et personnalisée au format JSON.
-*   **Résultat** : L'interface affiche la routine sous forme de magazine interactif.
+### IA Générative
+
+* L’utilisateur renseigne son profil (âge, type de peau, budget, etc.)
+* Le moteur RAG indexe les produits depuis `skincare_products.csv`
+* Mistral AI génère une routine personnalisée au format structuré (JSON)
+* Le résultat est affiché via une interface Streamlit interactive
+
+### IA Prédictive
+
+* Les données utilisateur sont analysées par des modèles de machine learning
+* Les prédictions utilisent `scikit-learn` et `xgboost`
+* Les résultats sont affichés directement dans Streamlit
+
+---
 
 ## ⚠️ Dépannage Courant
 
-*   **Erreur "ModuleNotFoundError"** : Vérifiez que vous avez bien installé toutes les bibliothèques listées dans la section Installation.
-*   **Erreur "MISTRAL_API_KEY non trouvée"** : Vérifiez que le fichier `.env` est bien présent dans `Glow_front` et qu'il contient une clé valide.
-*   **Lenteur au premier lancement** : C'est normal, le système télécharge le modèle d'embedding pour la recherche de produits.
+* **ModuleNotFoundError**
+  → Dépendances non installées ou mauvais environnement activé
+
+* **MISTRAL_API_KEY non trouvée**
+  → Vérifier le fichier `.env` et son emplacement
+
+* **Lenteur au premier lancement (IA générative)**
+  → Téléchargement initial des modèles d’embedding
+
+* **Commande `streamlit` introuvable**
+  → Vérifier que l’environnement virtuel est bien activé
