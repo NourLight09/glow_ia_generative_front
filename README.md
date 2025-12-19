@@ -4,10 +4,12 @@ Glow AI est une application de recommandation de routines de soins de la peau al
 
 ## 📂 Structure du Projet
 
-Le projet est divisé en deux dossiers principaux :
+Le projet est divisé en quatres dossiers principaux :
 
-*   **`Glow_front/`** : Contient l'interface utilisateur (Frontend) réalisée avec Streamlit.
+*   **`Glow_front_IA_generative/`** : Contient l'interface utilisateur (Frontend) réalisée avec Streamlit.
 *   **`générative/`** : Contient la logique IA (Backend), le moteur RAG et la base de données produits (`skincare_products.csv`).
+*   **`Glow_front_IA_predictive/`** : Contient l'interface utilisateur (Frontend) réalisée avec Streamlit qui est donc reliée à l'i prédictive.
+*   **`IA_predictive/`** : Contient la logique IA (Backend), de l'IA prédictive
 
 ## 🛠️ Prérequis
 
