@@ -9,11 +9,11 @@ Les deux parties sont indépendantes mais partagent une interface commune basée
 
 ---
 
-## 📂 Structure du Projet
+## Structure du Projet
 
 Le projet est organisé en **quatre dossiers principaux**, séparant clairement les deux types d’IA :
 
-### 🔮 IA Générative
+### IA Générative
 
 * **`Glow_front_IA_generative/`**
   Interface utilisateur (Frontend) réalisée avec Streamlit.
@@ -35,17 +35,16 @@ Le projet est organisé en **quatre dossiers principaux**, séparant clairement 
 
 ---
 
-## 🛠️ Prérequis
+##  Prérequis
 
 * **Python 3.8 ou supérieur**
 * **Une clé API Mistral AI** (uniquement pour l’IA générative)
-* Système **Linux recommandé** pour l’IA prédictive (gestion du venv)
 
 ---
 
-## 🚀 Installation
+## Installation
 
-### 🔮 Installation – IA Générative
+###  Installation – IA Générative
 
 1. Ouvrez un terminal à la racine du projet.
 
@@ -66,14 +65,14 @@ MISTRAL_API_KEY=votre_cle_api_ici
 
 ---
 
-### 📊 Installation – IA Prédictive (Linux)
+### Installation – IA Prédictive (Linux)
 
-Sur Linux, il est **obligatoire** de créer un environnement virtuel Python.
+Sur Linux, il est obligatoire de créer un environnement virtuel Python.
 
 1. Placez-vous dans le dossier :
 
 ```bash
-cd IA_predictive
+cd Glow_front_IA_predictive
 ```
 
 2. Créez l’environnement virtuel :
@@ -96,9 +95,9 @@ pip install streamlit xgboost pandas joblib scikit-learn
 
 ---
 
-## ▶️ Lancement des Applications
+## Lancement des Applications
 
-### 🔮 Lancer l’IA Générative
+### Lancer l’IA Générative
 
 ```bash
 cd Glow_front_IA_generative
@@ -113,7 +112,7 @@ http://localhost:8501
 
 ---
 
-### 📊 Lancer l’IA Prédictive
+### Lancer l’IA Prédictive
 
 ```bash
 source venv/bin/activate
